@@ -5,6 +5,8 @@ import com.cryo.controllers.effects.EffectsController;
 import com.cryo.controllers.LEDController;
 import com.cryo.db.DBConnectionManager;
 import com.diozero.ws281xj.sampleapps.WS281xTest;
+import com.github.mbelling.ws281x.LedStripType;
+import com.github.mbelling.ws281x.Ws281xLedStrip;
 import com.google.gson.FieldNamingPolicy;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
@@ -41,7 +43,11 @@ public class Main {
 
     public static void main(String[] args) {
 
-        WS281xTest.main(args);
+        Ws281xLedStrip strip = new Ws281xLedStrip(200, 10, 800000, 10, 255, 0, false, LedStripType.WS2811_STRIP_GRB, false);
+        strip.setStrip(255, 0, 0);
+        strip.render();
+
+//        WS281xTest.main(args);
 //        instance = new Main();
 //        instance.setup();
     }
