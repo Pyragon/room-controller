@@ -4,15 +4,11 @@ import com.cryo.controllers.ZoneController;
 import com.cryo.controllers.effects.EffectsController;
 import com.cryo.controllers.LEDController;
 import com.cryo.db.DBConnectionManager;
-import com.diozero.ws281xj.sampleapps.WS281xTest;
 import com.github.mbelling.ws281x.LedStripType;
 import com.github.mbelling.ws281x.Ws281xLedStrip;
 import com.google.gson.FieldNamingPolicy;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
-import com.rm5248.serial.NoSuchPortException;
-import com.rm5248.serial.NotASerialPortException;
-import com.rm5248.serial.SerialPort;
 import lombok.Data;
 import lombok.Getter;
 
@@ -20,7 +16,6 @@ import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
-import java.util.Arrays;
 import java.util.Properties;
 
 import static spark.Spark.*;
