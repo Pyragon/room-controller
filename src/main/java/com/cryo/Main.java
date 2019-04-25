@@ -23,7 +23,6 @@ import static spark.Spark.*;
 public class Main {
 
     private LEDController ledController;
-    private ZoneController zoneController;
     private EffectsController effectsController;
     private DBConnectionManager connectionManager;
 
@@ -51,11 +50,9 @@ public class Main {
         loadProperties();
         connectionManager = new DBConnectionManager();
         ledController = new LEDController(1); //CHANGE
-        zoneController = new ZoneController();
         effectsController = new EffectsController();
 
         ledController.setupEndpoints();
-        zoneController.setupEndpoints();
         effectsController.setupEndpoints();
 
         get("/", (req, res) -> {
