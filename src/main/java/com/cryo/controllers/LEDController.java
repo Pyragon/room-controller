@@ -1,15 +1,23 @@
 package com.cryo.controllers;
 
 import com.cryo.entities.Controller;
+import com.github.mbelling.ws281x.LedStripType;
+import com.github.mbelling.ws281x.Ws281xLedStrip;
+import lombok.Data;
 import spark.Request;
 import spark.Response;
 
+@Data
 public class LEDController implements Controller {
 
-    private byte[] leds;
+    private Ws281xLedStrip strip;
 
     public LEDController(int ledsCount) {
-        leds = new byte[ledsCount];
+        start(ledsCount);
+    }
+
+    public void start(int ledsCount) {
+        strip = new Ws281xLedStrip(ledsCount, 10, 800000, 10, 255, 0, false, LedStripType.WS2811_STRIP_GRB, false);
 
     }
 

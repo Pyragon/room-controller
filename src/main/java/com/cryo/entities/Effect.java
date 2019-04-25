@@ -1,17 +1,17 @@
 package com.cryo.entities;
 
+import com.github.mbelling.ws281x.Ws281xLedStrip;
 import lombok.Data;
 
 @Data
 public abstract class Effect {
 
-    protected final int startIndex;
-    protected final int endIndex;
+    protected final Ws281xLedStrip strip;
+
+    protected final int[][] leds;
+
+    public abstract void start();
 
     public abstract void loop();
-
-    public void showStrip() {
-        //SEND LEDs to LEDController to be shown
-    }
 
 }

@@ -1,6 +1,5 @@
 package com.cryo;
 
-import com.cryo.controllers.ZoneController;
 import com.cryo.controllers.effects.EffectsController;
 import com.cryo.controllers.LEDController;
 import com.cryo.db.DBConnectionManager;

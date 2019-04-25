@@ -167,6 +167,10 @@ public abstract class DatabaseConnection {
         return null;
     }
 
+    public Object[] select(String database, SQLQuery query) {
+        return select(database, null, query);
+    }
+
     public Object[] select(String database, String condition, SQLQuery query, Object... values) {
         try {
             if (connection.isClosed() || !connection.isValid(5)) connect();

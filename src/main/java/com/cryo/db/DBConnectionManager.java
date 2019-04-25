@@ -32,10 +32,12 @@ public class DBConnectionManager {
 
     public void init() {
         connections = new HashMap<>();
+        connections.put(Connection.LOGIN, new LoginConnection());
+        connections.put(Connection.MISC, new MiscConnection());
     }
 
     public enum Connection {
-        LOGIN
+        LOGIN, MISC, SCENE
     }
 
 }
