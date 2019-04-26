@@ -24,7 +24,7 @@ public class LEDController implements Controller {
 
     @Override
     public String[] getRoutes() {
-        return new String[] { "GET", "/leds", "POST", "/leds/:led/:action", "POST", "/leds/reset" };
+        return new String[] { "GET", "/leds" };
                                 //prints info of all LEDs   sets led on/of              resets all LEDs to normal
     }
 
