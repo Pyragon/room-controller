@@ -6,10 +6,12 @@ import com.cryo.db.impl.MiscConnection;
 import com.cryo.db.impl.SceneConnection;
 import com.cryo.entities.Effect;
 import com.cryo.entities.Scene;
+import com.github.mbelling.ws281x.Color;
 import com.github.mbelling.ws281x.Ws281xLedStrip;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Properties;
 
 public class SceneController {
 
@@ -31,7 +33,9 @@ public class SceneController {
             setScene(scenes.get(lastScene));
             return;
         }
-        setScene(new Scene(-1, "ContinuousTest", new Effect[] { new ContinousEffect(getStrip(), new int[][] { { 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20 } }) }));
+        Properties settings = new Properties();
+        settings.put("colour", new Color(255, 0, 0));
+        setScene(new Scene(-1, "ContinuousTest", new Effect[] { new ContinousEffect(getStrip(), new int[][] { { 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20 } }, settings) }));
     }
 
     public void setQuickScene(Scene scene) {
