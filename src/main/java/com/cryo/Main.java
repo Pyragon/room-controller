@@ -6,6 +6,7 @@ import com.cryo.controllers.LEDController;
 import com.cryo.db.DBConnectionManager;
 import com.cryo.db.impl.SceneConnection;
 import com.cryo.entities.Scene;
+import com.cryo.tasks.TaskManager;
 import com.github.mbelling.ws281x.LedStripType;
 import com.github.mbelling.ws281x.Ws281xLedStrip;
 import com.google.gson.FieldNamingPolicy;
@@ -29,6 +30,7 @@ public class Main {
     private SceneController sceneController;
     private EffectsController effectsController;
     private DBConnectionManager connectionManager;
+    private TaskManager taskManager;
 
     private Properties properties;
 
@@ -51,9 +53,11 @@ public class Main {
         ledController = new LEDController(); //CHANGE
         sceneController = new SceneController();
         effectsController = new EffectsController();
+        taskManager = new TaskManager();
 
         ledController.setupEndpoints();
         effectsController.setupEndpoints();
+        taskManager.init();
 
         get("/", (req, res) -> {
             return "";
