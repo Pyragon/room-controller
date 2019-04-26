@@ -47,6 +47,7 @@ public class Main {
         gson = buildGson();
         loadProperties();
         connectionManager = new DBConnectionManager();
+        connectionManager.init();
         ledController = new LEDController(); //CHANGE
         sceneController = new SceneController();
         effectsController = new EffectsController();
