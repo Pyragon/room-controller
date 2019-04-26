@@ -1,6 +1,7 @@
 package com.cryo.controllers;
 
 import com.cryo.Main;
+import com.cryo.controllers.effects.impl.BlinkEffect;
 import com.cryo.controllers.effects.impl.ContinousEffect;
 import com.cryo.db.impl.MiscConnection;
 import com.cryo.db.impl.SceneConnection;
@@ -35,7 +36,9 @@ public class SceneController {
         }
         Properties settings = new Properties();
         settings.put("colour", new Color(255, 0, 0));
-        setScene(new Scene(-1, "ContinuousTest", new Effect[] { new ContinousEffect(getStrip(), new int[][] { { 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20 } }, settings) }));
+        setScene(new Scene(-1, "ContinuousTest", new Effect[]{new ContinousEffect(getStrip(), new int[][]{{10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20}}, settings),
+                new BlinkEffect(getStrip(), new int[][]{{21, 22, 23, 24, 25, 26, 27, 28, 29, 30}}, settings)
+        }));
     }
 
     public void setQuickScene(Scene scene) {
