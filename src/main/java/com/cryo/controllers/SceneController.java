@@ -19,6 +19,7 @@ public class SceneController {
     private Scene quickScene;
 
     public SceneController() {
+        scenes = new HashMap<>();
         Object[] data = SceneConnection.connection().handleRequest("get-scenes");
         if(data != null) {
             ArrayList<Scene> scenes = (ArrayList<Scene>) data[0];
