@@ -19,7 +19,7 @@ public class LEDController implements Controller {
 
     public void start() {
         int ledsCount = Integer.parseInt(Main.getInstance().getProperties().getProperty("leds_count"));
-        strip = new Ws281xLedStrip(ledsCount, 10, 800000, 10, 255, 0, false, LedStripType.WS2811_STRIP_BRG, false);
+        strip = new Ws281xLedStrip(ledsCount, 10, 800000, 10, 255, 0, false, LedStripType.WS2811_STRIP_GRB, false);
     }
 
     @Override
