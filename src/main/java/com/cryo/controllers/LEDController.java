@@ -1,5 +1,6 @@
 package com.cryo.controllers;
 
+import com.cryo.Main;
 import com.cryo.entities.Controller;
 import com.github.mbelling.ws281x.LedStripType;
 import com.github.mbelling.ws281x.Ws281xLedStrip;
@@ -12,13 +13,13 @@ public class LEDController implements Controller {
 
     private Ws281xLedStrip strip;
 
-    public LEDController(int ledsCount) {
-        start(ledsCount);
+    public LEDController() {
+        start();
     }
 
-    public void start(int ledsCount) {
-        strip = new Ws281xLedStrip(ledsCount, 10, 800000, 10, 255, 0, false, LedStripType.WS2811_STRIP_GRB, false);
-
+    public void start() {
+        int ledsCount = Integer.parseInt(Main.getInstance().getProperties().getProperty("leds_count"));
+        strip = new Ws281xLedStrip(ledsCount, 10, 800000, 10, 255, 0, false, LedStripType.WS2811_STRIP_RGB, false);
     }
 
     @Override

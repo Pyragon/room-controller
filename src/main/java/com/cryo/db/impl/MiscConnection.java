@@ -8,7 +8,7 @@ import com.cryo.entities.SQLQuery;
 public class MiscConnection extends DatabaseConnection {
 
     public MiscConnection() {
-        super("discord");
+        super("room_controller");
     }
 
     public static MiscConnection connection() {
@@ -23,7 +23,7 @@ public class MiscConnection extends DatabaseConnection {
                 String key = (String) data[1];
                 Object value = data[2];
                 data = select("misc", "`key`=?", GET_VALUE, key);
-                if (data == null) insert("misc", new Object[]{"DEFAULT", key, value.toString(), "DEFAULT"});
+                if (data == null) insert("misc", new Object[]{"DEFAULT", key, value.toString(), "DEFAULT", "DEFAULT"});
                 else set("misc", "value=?", "`key`=?", value.toString(), key);
                 break;
             case "get-value":

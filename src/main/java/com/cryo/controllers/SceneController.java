@@ -30,7 +30,7 @@ public class SceneController {
             setScene(scenes.get(lastScene));
             return;
         }
-        setScene(new Scene(-1, "ContinousTest", new Effect[] { new ContinousEffect(getStrip(), new int[][] { { 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20 } }) }));
+        setScene(new Scene(-1, "ContinuousTest", new Effect[] { new ContinousEffect(getStrip(), new int[][] { { 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20 } }) }));
     }
 
     public void setQuickScene(Scene scene) {

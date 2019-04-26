@@ -11,7 +11,7 @@ import java.sql.Timestamp;
 public class LoginConnection extends DatabaseConnection {
 
     public LoginConnection() {
-        super("led_controller");
+        super("room_controller");
     }
 
     public static LoginConnection connection() {

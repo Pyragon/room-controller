@@ -14,7 +14,7 @@ import java.util.ArrayList;
 public class SceneConnection extends DatabaseConnection {
 
     public SceneConnection() {
-        super("room-controller");
+        super("room_controller");
     }
 
     public static SceneConnection connection() {
