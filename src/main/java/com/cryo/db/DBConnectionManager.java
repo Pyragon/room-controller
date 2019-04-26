@@ -34,6 +34,7 @@ public class DBConnectionManager {
         connections = new HashMap<>();
         connections.put(Connection.LOGIN, new LoginConnection());
         connections.put(Connection.MISC, new MiscConnection());
+        connections.put(Connection.SCENE, new SceneConnection());
     }
 
     public enum Connection {

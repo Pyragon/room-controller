@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="a37bb708-b684-4283-9066-1cbae8c69276" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/cryo/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/cryo/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/cryo/db/DBConnectionManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/cryo/db/DBConnectionManager.java" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <ignored path="$PROJECT_DIR$/target/" />
@@ -22,7 +22,7 @@
         <entry file="file://$PROJECT_DIR$/src/main/java/com/cryo/controllers/SceneController.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="400">
-              <caret line="32" column="24" selection-start-line="32" selection-start-column="24" selection-end-line="32" selection-end-column="24" />
+              <caret line="32" column="25" lean-forward="true" selection-start-line="32" selection-start-column="25" selection-end-line="32" selection-end-column="25" />
               <folding>
                 <element signature="imports" expanded="true" />
                 <element signature="e#2098#2099#0" expanded="true" />
@@ -40,14 +40,23 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/cryo/Main.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="386">
-              <caret line="49" column="33" selection-start-line="49" selection-start-column="33" selection-end-line="49" selection-end-column="33" />
+              <caret line="49" column="28" lean-forward="true" selection-start-line="49" selection-start-column="28" selection-end-line="49" selection-end-column="28" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/cryo/db/DBConnectionManager.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="373">
+              <caret line="36" column="65" selection-start-line="36" selection-start-column="65" selection-end-line="36" selection-end-column="65" />
             </state>
           </provider>
         </entry>
@@ -108,24 +117,6 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/cryo/db/DBConnectionManager.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="190">
-              <caret line="15" column="11" selection-start-line="15" selection-start-column="11" selection-end-line="15" selection-end-column="11" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/cryo/db/DatabaseConnection.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="325">
-              <caret line="28" column="48" selection-start-line="28" selection-start-column="48" selection-end-line="28" selection-end-column="48" />
-            </state>
-          </provider>
-        </entry>
-      </file>
     </leaf>
   </component>
   <component name="FileTemplateManagerImpl">
@@ -152,7 +143,6 @@
         <option value="$PROJECT_DIR$/src/main/java/com/cryo/controllers/effects/impl/PoliceEffect.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/cryo/controllers/effects/EffectsController.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/cryo/entities/Scene.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/cryo/db/DBConnectionManager.java" />
         <option value="$PROJECT_DIR$/props.json" />
         <option value="$PROJECT_DIR$/src/main/java/com/cryo/controllers/LEDController.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/cryo/controllers/effects/impl/ContinousEffect.java" />
@@ -161,6 +151,7 @@
         <option value="$PROJECT_DIR$/src/main/java/com/cryo/db/impl/MiscConnection.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/cryo/controllers/SceneController.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/cryo/Main.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/cryo/db/DBConnectionManager.java" />
       </list>
     </option>
   </component>
@@ -440,17 +431,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/cryo/controllers/SceneController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="400">
-          <caret line="32" column="24" selection-start-line="32" selection-start-column="24" selection-end-line="32" selection-end-column="24" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#2098#2099#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/cryo/db/impl/SceneConnection.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="404">
@@ -461,20 +441,31 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/cryo/db/DBConnectionManager.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/cryo/controllers/SceneController.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="190">
-          <caret line="15" column="11" selection-start-line="15" selection-start-column="11" selection-end-line="15" selection-end-column="11" />
+        <state relative-caret-position="400">
+          <caret line="32" column="25" lean-forward="true" selection-start-line="32" selection-start-column="25" selection-end-line="32" selection-end-column="25" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#2098#2099#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/cryo/Main.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="386">
-          <caret line="49" column="33" selection-start-line="49" selection-start-column="33" selection-end-line="49" selection-end-column="33" />
+          <caret line="49" column="28" lean-forward="true" selection-start-line="49" selection-start-column="28" selection-end-line="49" selection-end-column="28" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/cryo/db/DBConnectionManager.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="373">
+          <caret line="36" column="65" selection-start-line="36" selection-start-column="65" selection-end-line="36" selection-end-column="65" />
         </state>
       </provider>
     </entry>
