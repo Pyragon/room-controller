@@ -27,10 +27,10 @@ public class BlinkEffect extends Effect {
     @Override
     public void loop() {
         //runs every 10ms
-        //we want to blink every 500ms, so we'll add a number until we get to 50
+        //we want to blink every 5s, so we'll add a number until we get to 500
         System.out.println("running "+settings.get("colour"));
         tick++;
-        if(tick == 50) {
+        if(tick == 500) {
             tick = 0;
             if(lit) setStrip(new Color(0, 0, 0));
             else setStrip((Color) settings.get("colour"));
