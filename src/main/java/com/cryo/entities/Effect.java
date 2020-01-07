@@ -2,11 +2,24 @@ package com.cryo.entities;
 
 import com.github.mbelling.ws281x.Ws281xLedStrip;
 import lombok.Data;
+import lombok.RequiredArgsConstructor;
+import org.eclipse.jetty.util.ArrayUtil;
 
 import java.util.Properties;
 
 @Data
+@RequiredArgsConstructor
 public abstract class Effect {
+
+    public Effect(Ws281xLedStrip strip, int ledStart, int ledEnd, Properties settings) {
+        this.strip = strip;
+        this.leds = new int[1][];
+        int[] leds = new int[ledStart-ledEnd];
+        int index = 0;
+        for(int i = ledStart; i < ledEnd; i++)
+            leds[index++] = i;
+        this.settings = settings;
+    }
 
     protected final Ws281xLedStrip strip;
 

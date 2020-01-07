@@ -13,6 +13,7 @@ public class PoliceEffect extends Effect {
         super(strip, leds, settings);
     }
 
+    //default to 20 leds
     @Override
     public void start() {
 

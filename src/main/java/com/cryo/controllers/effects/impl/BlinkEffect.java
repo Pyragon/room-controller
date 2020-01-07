@@ -11,6 +11,10 @@ public class BlinkEffect extends Effect {
     private int tick;
     private boolean lit;
 
+    public BlinkEffect(Ws281xLedStrip strip, int ledStart, int ledEnd, Properties settings) {
+        super(strip, ledStart, ledEnd, settings);
+    }
+
     public BlinkEffect(Ws281xLedStrip strip, int[][] leds, Properties settings) {
         super(strip, leds, settings);
     }
