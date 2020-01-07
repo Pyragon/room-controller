@@ -4,6 +4,7 @@ import com.cryo.entities.Effect;
 import com.github.mbelling.ws281x.Color;
 import com.github.mbelling.ws281x.Ws281xLedStrip;
 
+import java.util.Arrays;
 import java.util.Properties;
 
 public class BlinkEffect extends Effect {
@@ -21,7 +22,7 @@ public class BlinkEffect extends Effect {
 
     @Override
     public void start() {
-
+        System.out.println(Arrays.toString(leds));
     }
 
     @Override
