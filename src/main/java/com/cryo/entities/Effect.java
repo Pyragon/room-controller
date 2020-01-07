@@ -18,6 +18,7 @@ public abstract class Effect {
         int index = 0;
         for(int i = ledStart; i < ledEnd; i++)
             leds[index++] = i;
+        this.leds[0] = leds;
         this.settings = settings;
     }
 

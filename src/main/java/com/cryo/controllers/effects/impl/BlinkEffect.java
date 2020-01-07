@@ -22,7 +22,6 @@ public class BlinkEffect extends Effect {
 
     @Override
     public void start() {
-        System.out.println(Arrays.toString(leds));
     }
 
     @Override
