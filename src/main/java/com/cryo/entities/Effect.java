@@ -14,7 +14,7 @@ public abstract class Effect {
     public Effect(Ws281xLedStrip strip, int ledStart, int ledEnd, Properties settings) {
         this.strip = strip;
         this.leds = new int[1][];
-        int[] leds = new int[ledStart-ledEnd];
+        int[] leds = new int[ledEnd-ledStart];
         int index = 0;
         for(int i = ledStart; i < ledEnd; i++)
             leds[index++] = i;
