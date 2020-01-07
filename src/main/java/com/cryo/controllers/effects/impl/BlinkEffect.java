@@ -28,6 +28,7 @@ public class BlinkEffect extends Effect {
     public void loop() {
         //runs every 10ms
         //we want to blink every 500ms, so we'll add a number until we get to 50
+        System.out.println("running "+settings.get("colour"));
         tick++;
         if(tick == 50) {
             tick = 0;
