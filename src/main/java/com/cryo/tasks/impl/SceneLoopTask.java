@@ -8,6 +8,7 @@ public class SceneLoopTask extends TimerTask {
 
     @Override
     public void run() {
+        System.out.println("run");
         Main.getInstance().getSceneController().loop();
     }
 }
