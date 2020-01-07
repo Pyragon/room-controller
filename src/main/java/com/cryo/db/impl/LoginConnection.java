@@ -32,25 +32,6 @@ public class LoginConnection extends DatabaseConnection {
                 String hashed = BCrypt.hashPassword(password, salt);
                 if(!hash.equals(hashed)) return null;
                 return new Object[] { true };
-            case "get-session":
-                String session_id = (String) data[1];
-                data = select("sessions", "session_id=? AND active=1", GET_SESSION, session_id);
-                if(data == null) return null;
-                Timestamp stamp = (Timestamp) data[0];
-                if(stamp.getTime() <= System.currentTimeMillis()) {
-                    set("sessions", "active=0", "session_id=?", session_id);
-                    return null;
-                }
-                return new Object[] { stamp };
-            case "set-session":
-                username = (String) data[1];
-                session_id = (String) data[2];
-                long expires =  (long) data[3];
-                insert("sessions", new Object[] { "DEFAULT", username, session_id, expires, 1 });
-                break;
-            case "remove-session":
-                set("sessions", "active=0", "session_id=?", data[1]);
-                break;
         }
         return null;
     }

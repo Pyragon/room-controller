@@ -9,6 +9,7 @@ import com.cryo.entities.SQLQuery;
 import com.cryo.entities.Scene;
 
 import java.sql.ResultSet;
+import java.sql.Timestamp;
 import java.util.ArrayList;
 
 public class SceneConnection extends DatabaseConnection {
@@ -51,7 +52,9 @@ public class SceneConnection extends DatabaseConnection {
         int id = getInt(set, "id");
         String name = getString(set, "name");
         String effectsString = getString(set, "effects");
+        Timestamp added = getTimestamp(set, "added");
+        Timestamp updated = getTimestamp(set, "updated");
         Effect[] effects = Main.getGson().fromJson(effectsString, Effect[].class);
-        return new Scene(id, name, effects);
+        return new Scene(id, name, effects, added, updated);
     }
 }
