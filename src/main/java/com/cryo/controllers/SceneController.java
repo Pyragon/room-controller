@@ -10,7 +10,9 @@ import com.cryo.entities.Scene;
 import com.github.mbelling.ws281x.Color;
 import com.github.mbelling.ws281x.Ws281xLedStrip;
 
+import java.sql.Timestamp;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Properties;
 
@@ -36,7 +38,7 @@ public class SceneController {
         }
         Properties settings = new Properties();
         settings.put("colour", new Color(255, 0, 0));
-        setScene(new Scene(-1, "ContinuousTest", new Effect[]{new BlinkEffect(getStrip(), 0, 20, settings) }));
+        setScene(new Scene(-1, "ContinuousTest", new Effect[]{new BlinkEffect(getStrip(), 0, 20, settings) }, new Timestamp(new Date().getTime()), new Timestamp(new Date().getTime())));
     }
 
     public void setQuickScene(Scene scene) {
