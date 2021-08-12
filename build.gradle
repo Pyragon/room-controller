@@ -1,5 +1,6 @@
 plugins {
     id 'java-library'
+    id 'application'
 }
 
 group 'org.example'
@@ -10,6 +11,10 @@ repositories {
     flatDir {
         dirs 'data/libs'
     }
+}
+
+application {
+    mainClassName = 'com.cryo.RoomController'
 }
 
 allprojects {
@@ -26,6 +31,11 @@ dependencies {
     api name: 'rpi-ws281x-java'
 
     implementation 'com.google.code.gson:gson:2.8.7'
+    implementation "org.slf4j:slf4j-api:2.0.0-alpha1"
+    implementation "org.slf4j:slf4j-log4j12:2.0.0-alpha0"
+
+    api group: 'org.apache.logging.log4j', name: 'log4j-api', version: '2.14.1'
+    api group: 'org.apache.logging.log4j', name: 'log4j-core', version: '2.14.1'
 
     compileOnly 'org.projectlombok:lombok:1.18.20'
     annotationProcessor 'org.projectlombok:lombok:1.18.20'
