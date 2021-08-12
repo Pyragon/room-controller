@@ -15,6 +15,9 @@ import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.Properties;
+import java.util.Timer;
+import java.util.TimerTask;
+import java.util.concurrent.TimeUnit;
 
 @Data
 @Slf4j
@@ -40,8 +43,22 @@ public class RoomController {
 		int ledsCount = Integer.parseInt(properties.getProperty("leds_count"));
 		strip = new Ws281xLedStrip(ledsCount, 10, 800000, 10, 255, 0, false, LedStripType.WS2811_STRIP_BGR, false);
 
-		strip.setStrip(Color.RED);
-		strip.render();
+		Timer timer = new Timer();
+		timer.schedule(new TimerTask() {
+
+			private boolean on;
+
+			@Override
+			public void run() {
+
+				if(on)
+					strip.setStrip(new Color(0, 0, 0));
+				else
+					strip.setStrip(new Color(255, 0, 0));
+				strip.render();
+				on = !on;
+			}
+		}, 1000, 1000);
 
 		log.info("Set strip to red.");
 
