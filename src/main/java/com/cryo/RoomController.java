@@ -8,6 +8,7 @@ import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import lombok.Data;
 import lombok.Getter;
+import lombok.extern.slf4j.Slf4j;
 
 import java.io.BufferedReader;
 import java.io.File;
@@ -16,6 +17,7 @@ import java.io.IOException;
 import java.util.Properties;
 
 @Data
+@Slf4j
 public class RoomController {
 
 	@Getter
@@ -40,6 +42,9 @@ public class RoomController {
 
 		strip.setStrip(Color.RED);
 		strip.render();
+
+		log.info("Set strip to red.");
+
 	}
 
 	public static void loadProperties() {
