@@ -1,5 +1,8 @@
 package com.cryo;
 
+import com.github.mbelling.ws281x.Color;
+import com.github.mbelling.ws281x.LedStripType;
+import com.github.mbelling.ws281x.Ws281xLedStrip;
 import com.google.gson.FieldNamingPolicy;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
@@ -8,7 +11,6 @@ import lombok.Data;
 import lombok.Getter;
 import lombok.extern.slf4j.Slf4j;
 
-import java.awt.*;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
@@ -31,7 +33,7 @@ public class RoomController {
 	@Getter
 	private static ConnectionManager connection;
 
-//	private Ws281xLedStrip strip;
+	private Ws281xLedStrip strip;
 
 	public void start() {
 		buildGson();
@@ -40,9 +42,9 @@ public class RoomController {
 		connection = new ConnectionManager();
 
 		int ledsCount = Integer.parseInt(properties.getProperty("leds_count"));
-		WS2812.get().init(64); //init a chain of 64 LEDs
-		WS2812.get().clear();
-//		strip = new Ws281xLedStrip(ledsCount, 10, 800000, 10, 255, 0, false, LedStripType.WS2811_STRIP_BGR, false);
+//		WS2812.get().init(64); //init a chain of 64 LEDs
+//		WS2812.get().clear();
+		strip = new Ws281xLedStrip(ledsCount, 18, 800000, 10, 255, 0, false, LedStripType.WS2811_STRIP_BGR, false);
 
 		Timer timer = new Timer();
 		timer.scheduleAtFixedRate(new TimerTask() {
@@ -53,16 +55,16 @@ public class RoomController {
 			public void run() {
 
 				if(on) {
-					WS2812.get().setPixelColor(0, Color.RED); //sets the color of the fist LED to red
-//					strip.setStrip(new Color(0, 0, 0));
+//					WS2812.get().setPixelColor(0, Color.RED); //sets the color of the fist LED to red
+					strip.setStrip(new Color(0, 0, 0));
 					log.info("Set strip off");
 				} else {
-					WS2812.get().setPixelColor(0, Color.BLACK); //sets the color of the fist LED to red
-//					strip.setStrip(new Color(255, 0, 0));
+//					WS2812.get().setPixelColor(0, Color.BLACK); //sets the color of the fist LED to red
+					strip.setStrip(new Color(255, 0, 0));
 					log.info("Set strip on");
 				}
-				WS2812.get().show();
-//				strip.render();
+//				WS2812.get().show();
+				strip.render();
 				on = !on;
 			}
 		}, 1000, 1000);
