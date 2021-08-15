@@ -3,6 +3,7 @@ package com.cryo.controllers;
 import com.cryo.RoomController;
 import com.cryo.effects.Effect;
 import com.cryo.effects.impl.BlinkEffect;
+import com.cryo.effects.impl.MeteorEffect;
 import com.cryo.entities.annotations.ServerStart;
 import com.cryo.entities.annotations.ServerStartSubscriber;
 import lombok.Data;
@@ -24,18 +25,18 @@ public class SceneController {
 
 	@ServerStart
 	public static void load() {
-		BlinkEffect blink = new BlinkEffect(IntStream.range(0, 10).toArray());
-		blink.setNextRun(System.currentTimeMillis() + 5000 + blink.getDelay()); //Add 5s delay just in case.
+		MeteorEffect meteor = new MeteorEffect(new int[][] { IntStream.range(0, 10).toArray() });
+		meteor.setNextRun(System.currentTimeMillis() + 5000); //Add 5s delay just in case.
 		effects = new ArrayList<>() {{
-			add(blink);
+			add(meteor);
 		}};
 	}
 
 	public void loop() {
 		for(Effect effect : effects) {
 			if(System.currentTimeMillis() > effect.getNextRun()) {
-				effect.loop(LEDController.getStrip());
-				effect.setNextRun(System.currentTimeMillis() + effect.getDelay());
+				int delay = effect.loop(LEDController.getStrip());
+				effect.setNextRun(System.currentTimeMillis() + delay);
 			}
 		}
 		controller.render();

@@ -8,10 +8,9 @@ public abstract class Effect {
 
 	private long nextRun;
 
-	private final long delay;
-	protected final int[] leds;
+	protected final int[][] leds;
 
-	public abstract void loop(Ws281xLedStrip strip);
+	public abstract int loop(Ws281xLedStrip strip);
 
 
 }
