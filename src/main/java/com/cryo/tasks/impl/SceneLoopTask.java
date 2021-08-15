@@ -6,7 +6,7 @@ import com.cryo.entities.Task;
 public class SceneLoopTask extends Task {
 
 	public SceneLoopTask() {
-		super(20);
+		super(5);
 	}
 
 	@Override

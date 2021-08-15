@@ -4,6 +4,7 @@ import com.cryo.RoomController;
 import com.cryo.effects.Effect;
 import com.cryo.effects.impl.BlinkEffect;
 import com.cryo.effects.impl.MeteorEffect;
+import com.cryo.effects.impl.RGBLoopEffect;
 import com.cryo.entities.annotations.ServerStart;
 import com.cryo.entities.annotations.ServerStartSubscriber;
 import lombok.Data;
@@ -25,10 +26,10 @@ public class SceneController {
 
 	@ServerStart
 	public static void load() {
-		MeteorEffect meteor = new MeteorEffect(new int[][] { IntStream.range(0, 10).toArray() });
-		meteor.setNextRun(System.currentTimeMillis() + 5000); //Add 5s delay just in case.
+		RGBLoopEffect rgbloop = new RGBLoopEffect(new int[][] { IntStream.range(0, 10).toArray() });
+		rgbloop.setNextRun(System.currentTimeMillis() + 5000); //Add 5s delay just in case.
 		effects = new ArrayList<>() {{
-			add(meteor);
+			add(rgbloop);
 		}};
 	}
 
