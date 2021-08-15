@@ -26,7 +26,7 @@ public class RGBLoopEffect extends Effect {
 				colourIndex = 0;
 				fading = false;
 				loopIndex++;
-				if(loopIndex == 4) loopIndex = 0;
+				if(loopIndex == 3) loopIndex = 0;
 			}
 		} else {
 			colourIndex++;
