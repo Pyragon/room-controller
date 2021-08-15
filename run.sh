@@ -1,3 +1,3 @@
-chmod +x ./gradlew
-./gradlew build
-./gradlew run
+sudo chmod +x ./gradlew
+sudo ./gradlew build
+sudo ./gradlew run
