@@ -18,6 +18,10 @@ public class LEDController {
 	public static void load() {
 		int ledsCount = Integer.parseInt(RoomController.getProperties().getProperty("leds_count"));
 		strip = new Ws281xLedStrip(ledsCount, 18, 800000, 10, 255, 0, false, LedStripType.WS2811_STRIP_GRB, false);
+
+		for(int i = 0; i < ledsCount; i++)
+			strip.setPixel(i, Color.RED);
+		strip.render();
 	}
 
 	public void render() {

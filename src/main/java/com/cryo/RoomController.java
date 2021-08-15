@@ -49,7 +49,7 @@ public class RoomController {
 		sceneController = new SceneController(ledController);
 		executor = new Timer();
 
-		executor.scheduleAtFixedRate(new TaskManager(), 2000, 10);
+//		executor.scheduleAtFixedRate(new TaskManager(), 2000, 10);
 
 	}
 

@@ -5,6 +5,8 @@ import com.github.mbelling.ws281x.Color;
 import com.github.mbelling.ws281x.Ws281xLedStrip;
 import lombok.extern.slf4j.Slf4j;
 
+import java.util.Arrays;
+
 @Slf4j
 public class BlinkEffect extends Effect {
 
@@ -17,8 +19,12 @@ public class BlinkEffect extends Effect {
 	@Override
 	public void loop(Ws281xLedStrip strip) {
 
-		for(int i = 0; i < leds.length; i++)
-			strip.setPixel(i, on ? Color.RED : Color.BLACK);
+		log.info("Leds: "+ Arrays.toString(leds));
+
+		for(int i = 0; i < leds.length; i++) {
+			log.info("Setting "+leds[i]+" to: "+(on ? Color.BLACK : Color.RED));
+			strip.setPixel(leds[i], on ? Color.BLACK : Color.RED);
+		}
 		log.info("Set strip to: "+on);
 		on = !on;
 
