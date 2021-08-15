@@ -7,7 +7,9 @@ import com.github.mbelling.ws281x.Color;
 import com.github.mbelling.ws281x.LedStripType;
 import com.github.mbelling.ws281x.Ws281xLedStrip;
 import lombok.Getter;
+import lombok.extern.slf4j.Slf4j;
 
+@Slf4j
 @ServerStartSubscriber
 public class LEDController {
 
@@ -22,6 +24,7 @@ public class LEDController {
 		for(int i = 0; i < ledsCount; i++)
 			strip.setPixel(i, Color.RED);
 		strip.render();
+		log.info("Loaded.");
 	}
 
 	public void render() {
