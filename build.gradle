@@ -27,6 +27,7 @@ dependencies {
     api "com.sparkjava:spark-core:2.9.3"
     api "de.neuland-bfi:pug4j:2.0.0-alpha-2"
     api 'com.github.Pyragon:CryoConnection:e905e8e'
+    api 'com.google.guava:guava:30.0-android'
 
     api name: 'rpi-ws281x-java'
     api name: 'pi-ws2812'
