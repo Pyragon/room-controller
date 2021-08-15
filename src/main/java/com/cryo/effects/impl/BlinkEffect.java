@@ -6,14 +6,15 @@ import com.github.mbelling.ws281x.Ws281xLedStrip;
 import lombok.extern.slf4j.Slf4j;
 
 import java.util.Arrays;
+import java.util.Properties;
 
 @Slf4j
 public class BlinkEffect extends Effect {
 
 	private boolean on;
 
-	public BlinkEffect(int[][] leds) {
-		super(leds); //any day, any hour, any minute, only on second 0 (once a minute), any milliseconds
+	public BlinkEffect(int[][] leds, Properties properties) {
+		super(leds, properties); //any day, any hour, any minute, only on second 0 (once a minute), any milliseconds
 	}
 
 	@Override

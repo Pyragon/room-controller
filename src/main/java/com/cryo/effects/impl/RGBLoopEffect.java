@@ -4,14 +4,16 @@ import com.cryo.effects.Effect;
 import com.github.mbelling.ws281x.Color;
 import com.github.mbelling.ws281x.Ws281xLedStrip;
 
+import java.util.Properties;
+
 public class RGBLoopEffect extends Effect {
 
 	private int loopIndex;
 	private boolean fading;
 	private int colourIndex;
 
-	public RGBLoopEffect(int[][] leds) {
-		super(leds);
+	public RGBLoopEffect(int[][] leds, Properties properties) {
+		super(leds, properties);
 	}
 
 	@Override

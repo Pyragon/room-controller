@@ -4,6 +4,7 @@ import com.cryo.effects.Effect;
 import com.github.mbelling.ws281x.Color;
 import com.github.mbelling.ws281x.Ws281xLedStrip;
 
+import java.util.Properties;
 import java.util.Random;
 
 public class MeteorEffect extends Effect {
@@ -20,8 +21,8 @@ public class MeteorEffect extends Effect {
 
 	private int ledIndex;
 
-	public MeteorEffect(int[][] leds) {
-		super(leds);
+	public MeteorEffect(int[][] leds, Properties properties) {
+		super(leds, properties);
 		random = new Random();
 	}
 

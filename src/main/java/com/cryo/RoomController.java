@@ -2,6 +2,7 @@ package com.cryo;
 
 import com.cryo.controllers.LEDController;
 import com.cryo.controllers.SceneController;
+import com.cryo.entities.EffectData;
 import com.cryo.tasks.TaskManager;
 import com.cryo.utils.Utilities;
 import com.google.gson.FieldNamingPolicy;
@@ -51,6 +52,10 @@ public class RoomController {
 
 		executor.scheduleAtFixedRate(new TaskManager(), 2000, 10);
 
+	}
+
+	public static DBConnection getConnection() {
+		return connection.getConnection("room_controller");
 	}
 
 	public static void loadProperties() {
