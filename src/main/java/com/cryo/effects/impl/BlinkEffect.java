@@ -3,7 +3,9 @@ package com.cryo.effects.impl;
 import com.cryo.effects.Effect;
 import com.github.mbelling.ws281x.Color;
 import com.github.mbelling.ws281x.Ws281xLedStrip;
+import lombok.extern.slf4j.Slf4j;
 
+@Slf4j
 public class BlinkEffect extends Effect {
 
 	private boolean on;
@@ -17,6 +19,7 @@ public class BlinkEffect extends Effect {
 
 		for(int i = 0; i < leds.length; i++)
 			strip.setPixel(i, on ? Color.RED : Color.BLACK);
+		log.info("Set strip to: "+on);
 		on = !on;
 
 	}
