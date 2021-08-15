@@ -19,13 +19,8 @@ public class BlinkEffect extends Effect {
 	@Override
 	public void loop(Ws281xLedStrip strip) {
 
-		log.info("Leds: "+ Arrays.toString(leds));
-
-		for(int i = 0; i < leds.length; i++) {
-			log.info("Setting "+leds[i]+" to: "+(on ? Color.BLACK : Color.RED));
+		for(int i = 0; i < leds.length; i++)
 			strip.setPixel(leds[i], on ? Color.BLACK : Color.RED);
-		}
-		log.info("Set strip to: "+on);
 		on = !on;
 
 	}
