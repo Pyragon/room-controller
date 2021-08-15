@@ -9,7 +9,7 @@ public class BlinkEffect extends Effect {
 	private boolean on;
 
 	public BlinkEffect(int[] leds) {
-		super("* * * 0 *", leds); //any day, any hour, any minute, only on second 0 (once a minute), any milliseconds
+		super(1000, leds); //any day, any hour, any minute, only on second 0 (once a minute), any milliseconds
 	}
 
 	@Override
