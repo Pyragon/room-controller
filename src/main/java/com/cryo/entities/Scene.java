@@ -29,6 +29,7 @@ public class Scene extends MySQLDao {
 	private ArrayList<Effect> effects;
 
 	public void loadJSON() {
+		effects = new ArrayList<>();
 		EffectData[] effectData = RoomController.getGson().fromJson(json, EffectData[].class);
 		if(effectData == null) {
 			log.error("Error loading effect data.");

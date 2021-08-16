@@ -29,7 +29,6 @@ public class RoomController {
 	private static Properties properties;
 	@Getter
 	private static Gson gson;
-	@Getter
 	private static ConnectionManager connection;
 
 	private SceneController sceneController;
