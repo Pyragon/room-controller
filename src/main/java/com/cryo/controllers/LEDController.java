@@ -19,7 +19,7 @@ public class LEDController {
 	@ServerStart
 	public static void load() {
 		int ledsCount = Integer.parseInt(RoomController.getProperties().getProperty("leds_count"));
-		//strip = new Ws281xLedStrip(ledsCount, 18, 800000, 10, 255, 0, false, LedStripType.WS2811_STRIP_GRB, false);
+		strip = new Ws281xLedStrip(ledsCount, 18, 800000, 10, 255, 0, false, LedStripType.WS2811_STRIP_GRB, false);
 	}
 
 	public void render() {

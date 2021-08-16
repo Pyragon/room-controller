@@ -6,14 +6,17 @@ import com.cryo.controllers.SceneController;
 import com.cryo.effects.Effect;
 import lombok.Data;
 import lombok.extern.slf4j.Slf4j;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.Properties;
 
 @Data
-@Slf4j
 public class Scene extends MySQLDao {
+
+	private Logger log = LoggerFactory.getLogger(Scene.class);
 
 	private final int id;
 	private final String name;
