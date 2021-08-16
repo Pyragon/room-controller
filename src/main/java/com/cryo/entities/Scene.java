@@ -2,13 +2,17 @@ package com.cryo.entities;
 
 import com.cryo.RoomController;
 import com.cryo.controllers.LEDController;
+import com.cryo.controllers.SceneController;
 import com.cryo.effects.Effect;
 import lombok.Data;
+import lombok.extern.slf4j.Slf4j;
 
 import java.sql.Timestamp;
 import java.util.ArrayList;
+import java.util.Properties;
 
 @Data
+@Slf4j
 public class Scene extends MySQLDao {
 
 	private final int id;
@@ -23,7 +27,19 @@ public class Scene extends MySQLDao {
 
 	public void loadJSON() {
 		EffectData[] effectData = RoomController.getGson().fromJson(json, EffectData[].class);
-
+		if(effectData == null) {
+			log.error("Error loading effect data.");
+			return;
+		}
+		for(EffectData data : effectData) {
+			Class<Effect> effectClass = SceneController.getEffects().get(data.getEffectName());
+			if(effectClass == null) continue;
+			try {
+				effects.add(effectClass.getConstructor(int[][].class, Properties.class).newInstance(data.getLeds(), data.getSettings()));
+			} catch(Exception e) {
+				e.printStackTrace();
+			}
+		}
 	}
 
 	public void loop() {
