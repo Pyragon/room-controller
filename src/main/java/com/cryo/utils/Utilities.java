@@ -243,7 +243,7 @@ public class Utilities {
 		try {
 			Account account = AccountUtils.getAccount(request);
 			if(request.requestMethod().equals("GET"))
-				return Pug4J.render("./source/modules/index.pug", new HashMap<>());
+				return Pug4J.render("./web/source/modules/index.pug", new HashMap<>());
 			if(model == null)
 				model = new HashMap<>();
 			Properties prop = new Properties();
@@ -253,7 +253,7 @@ public class Utilities {
 				model.put("user", account);
 			if(model.containsKey("404"))
 				prop.put("404", true);
-			module = "./source/modules/"+module+".pug";
+			module = "./web/source/modules/"+module+".pug";
 			String html = Pug4J.render(module, model);
 			prop.put("html", html);
 			return RoomController.getGson().toJson(prop);
