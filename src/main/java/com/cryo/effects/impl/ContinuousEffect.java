@@ -19,11 +19,11 @@ public class ContinuousEffect extends Effect {
 		strip.setStrip(Color.BLACK);
 		for(int i = 0; i < leds.length; i++) {
 			for(int k = 0; k < leds[i].length; k++) {
-				strip.setPixel(leds[i][k], Color.RED);
+				strip.setPixel(leds[i][k], (Color) settings.get("colour"));
 			}
 		}
 		log.info("Rendering continuous effect.");
 		strip.render();
-		return 60_000;
+		return 10_000;
 	}
 }
