@@ -14,12 +14,13 @@ public class ContinuousEffect extends Effect {
 
 	@Override
 	public int loop(Ws281xLedStrip strip) {
+		strip.setStrip(Color.BLACK);
 		for(int i = 0; i < leds.length; i++) {
 			for(int k = 0; k < leds[i].length; k++) {
 				strip.setPixel(leds[i][k], Color.RED);
 			}
 		}
 		strip.render();
-		return 10_000;
+		return 60_000;
 	}
 }

@@ -5,6 +5,7 @@ import com.cryo.controllers.SceneController;
 import com.cryo.entities.EffectData;
 import com.cryo.tasks.TaskManager;
 import com.cryo.utils.Utilities;
+import com.cryo.web.WebController;
 import com.google.gson.FieldNamingPolicy;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
@@ -33,6 +34,7 @@ public class RoomController {
 
 	private SceneController sceneController;
 	private LEDController ledController;
+	private WebController webController;
 
 	private Timer executor;
 
@@ -43,11 +45,13 @@ public class RoomController {
 		connection = new ConnectionManager();
 
 		Utilities.sendStartupHooks();
-		Utilities.initializeEndpoints();
 
 		ledController = new LEDController();
 		sceneController = new SceneController(ledController);
+		webController = new WebController();
 		executor = new Timer();
+
+		webController.load();
 
 		executor.scheduleAtFixedRate(new TaskManager(), 2000, 10);
 

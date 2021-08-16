@@ -49,7 +49,6 @@ public class MeteorEffect extends Effect {
 			}
 
 		}
-		log.info("rendering strip.");
 		strip.render();
 		ledIndex++;
 		if (ledIndex >= leds.length) ledIndex = 0;

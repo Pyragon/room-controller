@@ -1,8 +1,14 @@
 package com.cryo.utils;
 
+import com.cryo.RoomController;
+import com.cryo.entities.Account;
 import com.cryo.entities.annotations.*;
+import com.cryo.web.AccountUtils;
 import com.google.common.reflect.ClassPath;
+import de.neuland.pug4j.Pug4J;
 import lombok.extern.slf4j.Slf4j;
+import spark.Request;
+import spark.Response;
 
 import java.io.File;
 import java.io.IOException;
@@ -10,10 +16,9 @@ import java.lang.annotation.Annotation;
 import java.lang.reflect.Method;
 import java.lang.reflect.Modifier;
 import java.net.URL;
-import java.util.ArrayList;
-import java.util.Enumeration;
-import java.util.List;
+import java.util.*;
 
+import static com.cryo.web.WebController.render500;
 import static spark.Spark.get;
 import static spark.Spark.post;
 
@@ -232,5 +237,30 @@ public class Utilities {
 			}
 		}
 		return classes;
+	}
+
+	public static String renderPage(String module, HashMap<String, Object> model, Request request, Response response) {
+		try {
+			Account account = AccountUtils.getAccount(request);
+			if(request.requestMethod().equals("GET"))
+				return Pug4J.render("./source/modules/index.pug", new HashMap<>());
+			if(model == null)
+				model = new HashMap<>();
+			Properties prop = new Properties();
+			prop.put("success", true);
+			model.put("loggedIn", account != null);
+			if(account != null)
+				model.put("user", account);
+			if(model.containsKey("404"))
+				prop.put("404", true);
+			module = "./source/modules/"+module+".pug";
+			String html = Pug4J.render(module, model);
+			prop.put("html", html);
+			return RoomController.getGson().toJson(prop);
+		} catch(Exception e) {
+			e.printStackTrace();
+			render500(response, e.getMessage());
+			return "";
+		}
 	}
 }
