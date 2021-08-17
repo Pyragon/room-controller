@@ -18,6 +18,7 @@ public class Strip extends MySQLDao {
 	private final String name;
 	private final int pin;
 	private final int ledCount;
+	@MySQLRead("scenes")
 	private final String scenesString;
 	private final boolean active;
 	@MySQLDefault
