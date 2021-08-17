@@ -21,7 +21,7 @@ public class SceneController {
 	@Getter
 	private static HashMap<String, Class<Effect>> effects;
 	@Getter
-	private static HashMap<String, Scene> scenes;
+	private static HashMap<Integer, Scene> scenes;
 
 	private final StripController controller;
 
@@ -39,7 +39,7 @@ public class SceneController {
 			ArrayList<Scene> scenes = getConnection().selectList("scenes", Scene.class);
 			for(Scene scene : scenes) {
 				scene.loadJSON();
-				SceneController.scenes.put(scene.getName(), scene);
+				SceneController.scenes.put(scene.getId(), scene);
 			}
 		} catch(Exception e) {
 			e.printStackTrace();

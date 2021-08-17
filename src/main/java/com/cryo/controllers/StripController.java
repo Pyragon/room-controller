@@ -19,7 +19,6 @@ public class StripController {
 	@Getter
 	private HashMap<Integer, Strip> strips;
 
-	@ServerStart
 	public void load() {
 		strips = new HashMap<>();
 		ArrayList<Strip> strips = RoomController.getConnection().selectList("strips", "active=?", Strip.class, 1);
