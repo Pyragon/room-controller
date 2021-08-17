@@ -30,7 +30,8 @@ public class Strip extends MySQLDao {
 
 	private HashMap<Integer, Scene> activeScenes;
 
-	public void init() {
+	public void load() {
+		activeScenes = new HashMap<>();
 		int[] scenes = RoomController.getGson().fromJson(scenesString, int[].class);
 		for(int sceneId : scenes) {
 			Scene scene = SceneController.getScenes().get(sceneId);

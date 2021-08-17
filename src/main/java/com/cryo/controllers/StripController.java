@@ -24,6 +24,7 @@ public class StripController {
 		strips = new HashMap<>();
 		ArrayList<Strip> strips = RoomController.getConnection().selectList("strips", "active=?", Strip.class, 1);
 		for(Strip strip : strips) {
+			strip.load();
 			this.strips.put(strip.getId(), strip);
 			strip.setStrip(new Ws281xLedStrip(strip.getLedCount(), strip.getPin(), 800000, 10, 255, 0, false, LedStripType.WS2811_STRIP_GRB, true));
 		}
