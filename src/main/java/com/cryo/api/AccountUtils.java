@@ -1,4 +1,4 @@
-package com.cryo.web;
+package com.cryo.api;
 
 import com.cryo.entities.Account;
 import com.cryo.entities.Session;

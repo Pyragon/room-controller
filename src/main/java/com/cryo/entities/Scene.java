@@ -1,29 +1,34 @@
 package com.cryo.entities;
 
 import com.cryo.RoomController;
-import com.cryo.controllers.LEDController;
+import com.cryo.controllers.StripController;
 import com.cryo.controllers.SceneController;
 import com.cryo.effects.Effect;
+import com.github.mbelling.ws281x.Ws281xLedStrip;
 import lombok.Data;
-import lombok.extern.slf4j.Slf4j;
+import lombok.EqualsAndHashCode;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import java.sql.Time;
 import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.Properties;
 
 @Data
+@EqualsAndHashCode(callSuper = false)
 public class Scene extends MySQLDao {
 
 	private Logger log = LoggerFactory.getLogger(Scene.class);
 
+	@MySQLDefault
 	private final int id;
 	private final String name;
-	private final Timestamp timeToStart;
+	private final Time timeToStart;
 	private final String json;
-	private final boolean active;
+	@MySQLDefault
 	private final Timestamp added;
+	@MySQLDefault
 	private final Timestamp updated;
 
 	private ArrayList<Effect> effects;
@@ -46,10 +51,10 @@ public class Scene extends MySQLDao {
 		}
 	}
 
-	public void loop() {
+	public void loop(Ws281xLedStrip strip) {
 		for(Effect effect : effects) {
 			if (System.currentTimeMillis() > effect.getNextRun()) {
-				int delay = effect.loop(LEDController.getStrip());
+				int delay = effect.loop(strip);
 				effect.setNextRun(System.currentTimeMillis() + delay);
 			}
 		}

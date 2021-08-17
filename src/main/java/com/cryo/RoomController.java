@@ -1,11 +1,10 @@
 package com.cryo;
 
-import com.cryo.controllers.LEDController;
+import com.cryo.controllers.StripController;
 import com.cryo.controllers.SceneController;
-import com.cryo.entities.EffectData;
 import com.cryo.tasks.TaskManager;
 import com.cryo.utils.Utilities;
-import com.cryo.web.WebController;
+import com.cryo.api.APIController;
 import com.google.gson.FieldNamingPolicy;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
@@ -33,8 +32,8 @@ public class RoomController {
 	private static ConnectionManager connection;
 
 	private SceneController sceneController;
-	private LEDController ledController;
-	private WebController webController;
+	private StripController stripController;
+	private APIController apiController;
 
 	private Timer executor;
 
@@ -46,12 +45,14 @@ public class RoomController {
 
 		Utilities.sendStartupHooks();
 
-		ledController = new LEDController();
-		sceneController = new SceneController(ledController);
-		webController = new WebController();
+		stripController = new StripController();
+		sceneController = new SceneController(stripController);
+		apiController = new APIController();
 		executor = new Timer();
 
-		webController.load();
+		sceneController.load();
+		stripController.load();
+		apiController.load();
 
 		executor.scheduleAtFixedRate(new TaskManager(), 2000, 10);
 

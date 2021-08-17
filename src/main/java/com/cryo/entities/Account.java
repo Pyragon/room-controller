@@ -1,10 +1,12 @@
 package com.cryo.entities;
 
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 
 import java.sql.Timestamp;
 
 @Data
+@EqualsAndHashCode(callSuper = false)
 public class Account extends MySQLDao {
 
 	private final int id;

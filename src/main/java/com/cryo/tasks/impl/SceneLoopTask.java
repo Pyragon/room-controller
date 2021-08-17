@@ -11,7 +11,7 @@ public class SceneLoopTask extends Task {
 
 	@Override
 	public void run() {
-		RoomController.getINSTANCE().getSceneController().loop();
+		RoomController.getINSTANCE().getStripController().loop();
 	}
 
 }

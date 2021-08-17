@@ -3,7 +3,7 @@ package com.cryo.utils;
 import com.cryo.RoomController;
 import com.cryo.entities.Account;
 import com.cryo.entities.annotations.*;
-import com.cryo.web.AccountUtils;
+import com.cryo.api.AccountUtils;
 import com.google.common.reflect.ClassPath;
 import de.neuland.pug4j.Pug4J;
 import lombok.extern.slf4j.Slf4j;
@@ -18,7 +18,7 @@ import java.lang.reflect.Modifier;
 import java.net.URL;
 import java.util.*;
 
-import static com.cryo.web.WebController.render500;
+import static com.cryo.api.APIController.render500;
 import static spark.Spark.get;
 import static spark.Spark.post;
 
