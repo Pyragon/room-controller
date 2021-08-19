@@ -18,7 +18,7 @@ public class HalloweenEyesEffect extends Effect {
 	private final boolean fade;
 	private int steps;
 	private int fadeDelay;
-	private int endPause;
+	private int nextEndPause;
 
 	private boolean fading;
 	private int startIndex;
@@ -34,8 +34,14 @@ public class HalloweenEyesEffect extends Effect {
 		fade = true;
 	}
 
-	public int nextInt(int min, int max) {
-		return random.nextInt((max - min) + 1) + min;
+	public int random(int min, int max) {
+		final int n = Math.abs(max - min);
+		return Math.min(min, max) + (n == 0 ? 0 : random(n));
+	}
+
+	public int random(int maxValue) {
+		if (maxValue <= 0) return 0;
+		return random.nextInt(maxValue);
 	}
 
 	@Override
@@ -71,9 +77,10 @@ public class HalloweenEyesEffect extends Effect {
 			step = steps;
 			return 5;
 		}
-		steps = nextInt(5, 50);
-		fadeDelay = nextInt(5, 150);
-		endPause = nextInt(1000, 10_000);
+		steps = random(5, 50);
+		fadeDelay = random(5, 150);
+		int endPause = nextEndPause;
+		nextEndPause = random(1000, 10_000);
 		return endPause;
 	}
 }
