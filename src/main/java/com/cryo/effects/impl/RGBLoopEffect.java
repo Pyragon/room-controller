@@ -12,7 +12,7 @@ public class RGBLoopEffect extends Effect {
 	private boolean fading;
 	private int colourIndex;
 
-	public RGBLoopEffect(int[][] leds, Properties properties) {
+	public RGBLoopEffect(int[] leds, Properties properties) {
 		super(leds, properties);
 	}
 
@@ -21,7 +21,8 @@ public class RGBLoopEffect extends Effect {
 		int red = loopIndex == 0 ? colourIndex : 0;
 		int green = loopIndex == 1 ? colourIndex : 0;
 		int blue = loopIndex == 2 ? colourIndex : 0;
-		strip.setStrip(new Color(red, green, blue));
+		for(int i = 0; i < leds.length; i++)
+			strip.setPixel(i, new Color(red, green, blue));
 		if(fading) {
 			colourIndex--;
 			if(colourIndex < 0) {

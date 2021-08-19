@@ -13,7 +13,7 @@ public class BlinkEffect extends Effect {
 
 	private boolean on;
 
-	public BlinkEffect(int[][] leds, Properties properties) {
+	public BlinkEffect(int[] leds, Properties properties) {
 		super(leds, properties); //any day, any hour, any minute, only on second 0 (once a minute), any milliseconds
 	}
 
@@ -21,8 +21,7 @@ public class BlinkEffect extends Effect {
 	public int loop(Ws281xLedStrip strip) {
 
 		for(int i = 0; i < leds.length; i++)
-			for(int k = 0; k < leds[i].length; k++)
-			strip.setPixel(leds[i][k], on ? Color.BLACK : Color.RED);
+			strip.setPixel(leds[i], on ? Color.BLACK : Color.RED);
 		on = !on;
 		return 1000;
 	}

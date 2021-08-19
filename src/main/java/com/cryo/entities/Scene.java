@@ -44,7 +44,7 @@ public class Scene extends MySQLDao {
 			Class<Effect> effectClass = SceneController.getEffects().get(data.getEffectName());
 			if(effectClass == null) continue;
 			try {
-				effects.add(effectClass.getConstructor(int[][].class, Properties.class).newInstance(data.getLeds(), data.getSettings()));
+				effects.add(effectClass.getConstructor(int[].class, Properties.class).newInstance(data.getLeds(), data.getSettings()));
 			} catch(Exception e) {
 				e.printStackTrace();
 			}

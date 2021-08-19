@@ -11,17 +11,14 @@ import java.util.Properties;
 @Slf4j
 public class ContinuousEffect extends Effect {
 
-	public ContinuousEffect(int[][] leds, Properties settings) {
+	public ContinuousEffect(int[] leds, Properties settings) {
 		super(leds, settings);
 	}
 
 	@Override
 	public int loop(Ws281xLedStrip strip) {
-		for(int i = 0; i < leds.length; i++) {
-			for(int k = 0; k < leds[i].length; k++) {
-				strip.setPixel(leds[i][k], RoomController.getGson().fromJson(settings.getProperty("colour"), Color.class));
-			}
-		}
+		for(int i = 0; i < leds.length; i++)
+			strip.setPixel(leds[i], RoomController.getGson().fromJson(settings.getProperty("colour"), Color.class));
 		strip.render();
 		return 10_000;
 	}

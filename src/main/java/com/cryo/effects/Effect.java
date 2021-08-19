@@ -9,7 +9,7 @@ import java.util.Properties;
 public abstract class Effect {
 
 	private long nextRun;
-	protected final int[][] leds;
+	protected final int[] leds;
 	protected final Properties settings;
 
 	public abstract int loop(Ws281xLedStrip strip);
