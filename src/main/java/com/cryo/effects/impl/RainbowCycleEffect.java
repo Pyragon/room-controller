@@ -23,7 +23,7 @@ public class RainbowCycleEffect extends Effect {
 			strip.setPixel(leds[i], new Color(wheel[0], wheel[1], wheel[2]));
 		}
 		strip.render();
-		if(step >= MAX_STEPS)
+		if(step++ >= MAX_STEPS)
 			step = 0;
 		return 20;
 	}
