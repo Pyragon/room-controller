@@ -16,9 +16,9 @@ public class HalloweenEyesEffect extends Effect {
 	private final int eyeWidth;
 	private final int eyeSpace;
 	private final boolean fade;
-	private final int steps;
-	private final int fadeDelay;
-	private final int endPause;
+	private int steps;
+	private int fadeDelay;
+	private int endPause;
 
 	private boolean fading;
 	private int startIndex;
@@ -32,9 +32,6 @@ public class HalloweenEyesEffect extends Effect {
 		eyeWidth = 1;
 		eyeSpace = 4;
 		fade = true;
-		steps = nextInt(5, 50);
-		fadeDelay = nextInt(5, 150);
-		endPause = nextInt(1000, 10_000);
 	}
 
 	public int nextInt(int min, int max) {
@@ -74,6 +71,9 @@ public class HalloweenEyesEffect extends Effect {
 			step = steps;
 			return 5;
 		}
+		steps = nextInt(5, 50);
+		fadeDelay = nextInt(5, 150);
+		endPause = nextInt(1000, 10_000);
 		return endPause;
 	}
 }
