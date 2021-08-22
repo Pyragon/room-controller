@@ -18,9 +18,9 @@ public class RainbowCycleEffect extends Effect {
 
 	@Override
 	public int loop(Ws281xLedStrip strip) {
-		for(int i = 0; i < leds.length; i++) {
-			byte[] wheel = wheel((byte) (((leds[i] * 256 / leds.length) + step) & 255));
-			strip.setPixel(leds[i], new Color(wheel[0], wheel[1], wheel[2]));
+		for (int led : leds) {
+			int[] wheel = wheel((((led * 256 / leds.length) + step) & 255));
+			strip.setPixel(led, new Color(wheel[0], wheel[1], wheel[2]));
 		}
 		strip.render();
 		if(step++ >= MAX_STEPS)
@@ -28,19 +28,19 @@ public class RainbowCycleEffect extends Effect {
 		return 20;
 	}
 
-	private byte[] wheel(byte pos) {
-		byte[] wheel = new byte[3];
+	private int[] wheel(int pos) {
+		int[] wheel = new int[3];
 		if(pos < 85) {
-			wheel[0] = (byte) (pos * 3);
-			wheel[1] = (byte) (255 - pos * 3);
+			wheel[0] = (pos * 3);
+			wheel[1] = (255 - pos * 3);
 		} else if(pos < 170) {
 			pos -= 85;
-			wheel[0] = (byte) (255 - pos * 3);
-			wheel[2] = (byte) (pos * 3);
+			wheel[0] = (255 - pos * 3);
+			wheel[2] = (pos * 3);
 		} else {
 			pos -= 170;
-			wheel[1] = (byte) (pos * 3);
-			wheel[2] = (byte) (255 - pos * 3);
+			wheel[1] = (pos * 3);
+			wheel[2] = (255 - pos * 3);
 		}
 		return wheel;
 	}
