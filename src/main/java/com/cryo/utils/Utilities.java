@@ -9,6 +9,7 @@ import de.neuland.pug4j.Pug4J;
 import lombok.extern.slf4j.Slf4j;
 import spark.Request;
 import spark.Response;
+import spark.Route;
 
 import java.io.File;
 import java.io.IOException;
@@ -41,7 +42,7 @@ public class Utilities {
 		int get = 0;
 		int post = 0;
 		int classCount = 0;
-		boolean classChecked = false;
+		boolean classChecked;
 		try {
 			ArrayList<Class<?>> classes = Utilities.getClassesWithAnnotation("com.cryo", EndpointSubscriber.class);
 			for (Class<?> clazz : classes) {
@@ -49,7 +50,7 @@ public class Utilities {
 				classChecked = false;
 				for (Method method : clazz.getMethods()) {
 					int count = method.getParameterCount();
-					if ((count != 2 && count != 3) || (!method.isAnnotationPresent(Endpoint.class) && !method.isAnnotationPresent(SPAEndpoint.class) && !method.isAnnotationPresent(SPAEndpoints.class)))
+					if ((count == 0 || count > 3) || (!method.isAnnotationPresent(Endpoint.class) && !method.isAnnotationPresent(SPAEndpoint.class) && !method.isAnnotationPresent(SPAEndpoints.class)))
 						continue;
 					if (!Modifier.isStatic(method.getModifiers())) {
 						log.error("Expected method to be static in order for endpoint to work! " + method.getName());
@@ -69,22 +70,17 @@ public class Utilities {
 						for (String endpointString : endpoint.value().split(", ")) {
 							get++;
 							post++;
-							get(endpointString, (req, res) -> {
+							Route route = (req, res) -> {
 								Object[] parameters = new Object[count];
 								parameters[0] = count == 3 ? endpointString : req;
-								parameters[1] = count == 3 ? req : res;
-								if (count == 3)
-									parameters[2] = res;
+								if(count > 1) {
+									parameters[1] = count == 3 ? req : res;
+									if (count == 3) parameters[2] = res;
+								}
 								return method.invoke(null, parameters);
-							});
-							post(endpointString, (req, res) -> {
-								Object[] parameters = new Object[count];
-								parameters[0] = count == 3 ? endpointString : req;
-								parameters[1] = count == 3 ? req : res;
-								if (count == 3)
-									parameters[2] = res;
-								return method.invoke(null, parameters);
-							});
+							};
+							get(endpointString, route);
+							post(endpointString, route);
 						}
 						continue;
 					}
@@ -93,22 +89,17 @@ public class Utilities {
 						assert !endpoint.value().equals("") : "Invalid endpoint: " + method.getName() + " in " + method.getDeclaringClass().getSimpleName();
 						get++;
 						post++;
-						get(endpoint.value(), (req, res) -> {
+						Route route = (req, res) -> {
 							Object[] parameters = new Object[count];
 							parameters[0] = count == 3 ? endpoint.value() : req;
-							parameters[1] = count == 3 ? req : res;
-							if (count == 3)
-								parameters[2] = res;
+							if(count > 1) {
+								parameters[1] = count == 3 ? req : res;
+								if (count == 3) parameters[2] = res;
+							}
 							return method.invoke(null, parameters);
-						});
-						post(endpoint.value(), (req, res) -> {
-							Object[] parameters = new Object[count];
-							parameters[0] = count == 3 ? endpoint.value() : req;
-							parameters[1] = count == 3 ? req : res;
-							if (count == 3)
-								parameters[2] = res;
-							return method.invoke(null, parameters);
-						});
+						};
+						get(endpoint.value(), route);
+						post(endpoint.value(), route);
 						continue;
 					}
 					Endpoint endpoint = method.getAnnotation(Endpoint.class);
@@ -117,48 +108,38 @@ public class Utilities {
 						while (index < endpoint.values().length) {
 							String endpointMethod = endpoint.values()[index++];
 							String endpointString = endpoint.values()[index++];
-							if (endpointMethod.equals("GET")) {
-								get(endpointString, (req, res) -> {
-									Object[] parameters = new Object[count];
-									parameters[0] = count == 3 ? endpointString : req;
+							Route route = (req, res) -> {
+								Object[] parameters = new Object[count];
+								parameters[0] = count == 3 ? endpointString : req;
+								if(count > 1) {
 									parameters[1] = count == 3 ? req : res;
-									if (count == 3)
-										parameters[2] = res;
-									return method.invoke(null, parameters);
-								});
+									if (count == 3) parameters[2] = res;
+								}
+								return method.invoke(null, parameters);
+							};
+							if (endpointMethod.equals("GET")) {
+								get(endpointString, route);
 								get++;
 							} else {
-								post(endpointString, (req, res) -> {
-									Object[] parameters = new Object[count];
-									parameters[0] = count == 3 ? endpointString : req;
-									parameters[1] = count == 3 ? req : res;
-									if (count == 3)
-										parameters[2] = res;
-									return method.invoke(null, parameters);
-								});
+								post(endpointString, route);
 								post++;
 							}
 						}
 					} else {
-						if (endpoint.method().equals("GET")) {
-							get(endpoint.endpoint(), (req, res) -> {
-								Object[] parameters = new Object[count];
-								parameters[0] = count == 3 ? endpoint.endpoint() : req;
+						Route route = (req, res) -> {
+							Object[] parameters = new Object[count];
+							parameters[0] = count == 3 ? endpoint.endpoint() : req;
+							if(count > 1) {
 								parameters[1] = count == 3 ? req : res;
-								if (count == 3)
-									parameters[2] = res;
-								return method.invoke(null, parameters);
-							});
+								if (count == 3) parameters[2] = res;
+							}
+							return method.invoke(null, parameters);
+						};
+						if (endpoint.method().equals("GET")) {
+							get(endpoint.endpoint(), route);
 							get++;
 						} else {
-							post(endpoint.endpoint(), (req, res) -> {
-								Object[] parameters = new Object[count];
-								parameters[0] = count == 3 ? endpoint.endpoint() : req;
-								parameters[1] = count == 3 ? req : res;
-								if (count == 3)
-									parameters[2] = res;
-								return method.invoke(null, parameters);
-							});
+							post(endpoint.endpoint(), route);
 							post++;
 						}
 					}
