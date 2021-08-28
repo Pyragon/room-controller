@@ -4,7 +4,9 @@ import com.cryo.RoomController;
 import com.cryo.api.AccountUtils;
 import com.cryo.entities.Account;
 import com.cryo.entities.Token;
+import com.cryo.entities.annotations.Endpoint;
 import com.cryo.entities.annotations.EndpointSubscriber;
+import com.cryo.entities.annotations.SPAEndpoint;
 import com.cryo.utils.BCrypt;
 import com.cryo.utils.SessionIDGenerator;
 import lombok.extern.slf4j.Slf4j;
@@ -22,6 +24,7 @@ import static com.cryo.api.APIController.success;
 @EndpointSubscriber
 public class LoginAPI {
 
+	@SPAEndpoint("/login")
 	public static String login(Request request, Response response) {
 		if(!request.queryParams().contains("username") || !request.queryParams().contains("password"))
 			return error("Error parsing login info. Please try again.");
@@ -40,6 +43,7 @@ public class LoginAPI {
 		return RoomController.getGson().toJson(prop);
 	}
 
+	@SPAEndpoint("/logout")
 	public static String logout(Request request, Response response) {
 		Account account = AccountUtils.getAccount(request);
 		if(account == null) return error("Invalid token");
