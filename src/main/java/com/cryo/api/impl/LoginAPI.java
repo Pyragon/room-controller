@@ -1,8 +1,9 @@
 package com.cryo.api.impl;
 
+import com.cryo.RoomController;
 import com.cryo.api.AccountUtils;
 import com.cryo.entities.Account;
-import com.cryo.entities.Session;
+import com.cryo.entities.Token;
 import com.cryo.entities.annotations.EndpointSubscriber;
 import com.cryo.utils.BCrypt;
 import com.cryo.utils.SessionIDGenerator;
@@ -11,6 +12,7 @@ import spark.Request;
 import spark.Response;
 
 import java.sql.Timestamp;
+import java.util.Properties;
 
 import static com.cryo.RoomController.getConnection;
 import static com.cryo.api.APIController.error;
@@ -21,8 +23,6 @@ import static com.cryo.api.APIController.success;
 public class LoginAPI {
 
 	public static String login(Request request, Response response) {
-		if(request.cookies().containsKey("room_session"))
-			response.removeCookie("room_session");
 		if(!request.queryParams().contains("username") || !request.queryParams().contains("password"))
 			return error("Error parsing login info. Please try again.");
 		String username = request.queryParams("username");
@@ -30,17 +30,20 @@ public class LoginAPI {
 		Account account = getConnection().selectClass("accounts", "username LIKE ?", Account.class, username);
 		if(account == null) return error("Invalid username or password. Please try again.");
 		if(!BCrypt.hashPassword(password, account.getSalt()).equals(account.getHash())) return error("Invalid username or password. Please try again.");
-		String sessionId = SessionIDGenerator.getInstance().getSessionId();
-		response.cookie("room_session", sessionId, (60 * 60 * 24));
+		String tokenId = SessionIDGenerator.getInstance().getSessionId();
 		Timestamp expiry = new Timestamp(System.currentTimeMillis() + (1000 * 60 * 60 * 24));
-		Session session = new Session(-1, account.getId(), sessionId, expiry, null);
-		getConnection().insert("sessions", session);
-		return success("");
+		Token token = new Token(-1, account.getId(), tokenId, expiry, null);
+		getConnection().insert("tokens", token);
+		Properties prop = new Properties();
+		prop.put("success", true);
+		prop.put("token", token.getToken());
+		return RoomController.getGson().toJson(prop);
 	}
 
 	public static String logout(Request request, Response response) {
 		Account account = AccountUtils.getAccount(request);
-		if(account == null) return error("You are not logged in.");
+		if(account == null) return error("Invalid token");
+		String token = request.queryParams("token");
 		boolean revoke = false;
 		if(request.queryParams().contains("revoke")) {
 			try {
@@ -50,11 +53,10 @@ public class LoginAPI {
 				return error("Error parsing revoke. Please try again.");
 			}
 		}
-		String sessionId = request.cookie("room_session");
 		if(revoke)
-			getConnection().delete("sessions", "account_id=?", account.getId());
+			getConnection().delete("tokens", "account_id=?", account.getId());
 		else
-			getConnection().delete("sessions", "session_id=?", sessionId);
+			getConnection().delete("tokens", "token=?", token);
 		return success("");
 	}
 }
