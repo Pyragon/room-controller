@@ -9,10 +9,12 @@ import java.sql.Timestamp;
 @EqualsAndHashCode(callSuper = false)
 public class Token extends MySQLDao {
 
+	@MySQLDefault
 	private final int id;
 	private final int accountId;
 	private final String token;
 	private final Timestamp expiry;
+	@MySQLDefault
 	private final Timestamp added;
 
 }

@@ -24,23 +24,11 @@ import static com.cryo.api.APIController.success;
 @EndpointSubscriber
 public class LoginAPI {
 
-	@SPAEndpoint("/login")
-	public static String login(Request request, Response response) {
-		if(!request.queryParams().contains("username") || !request.queryParams().contains("password"))
-			return error("Error parsing login info. Please try again.");
-		String username = request.queryParams("username");
-		String password = request.queryParams("password");
-		Account account = getConnection().selectClass("accounts", "username LIKE ?", Account.class, username);
-		if(account == null) return error("Invalid username or password. Please try again.");
-		if(!BCrypt.hashPassword(password, account.getSalt()).equals(account.getHash())) return error("Invalid username or password. Please try again.");
-		String tokenId = SessionIDGenerator.getInstance().getSessionId();
-		Timestamp expiry = new Timestamp(System.currentTimeMillis() + (1000 * 60 * 60 * 24));
-		Token token = new Token(-1, account.getId(), tokenId, expiry, null);
-		getConnection().insert("tokens", token);
-		Properties prop = new Properties();
-		prop.put("success", true);
-		prop.put("token", token.getToken());
-		return RoomController.getGson().toJson(prop);
+	@Endpoint(endpoint="POST", method="/review")
+	public static String reviewKey(Request request, Response response) {
+		Account account = AccountUtils.getAccount(request);
+		if(account == null) return error("Invalid token");
+		return success("");
 	}
 
 	@SPAEndpoint("/logout")
