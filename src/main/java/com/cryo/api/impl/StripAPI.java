@@ -5,17 +5,19 @@ import com.cryo.entities.Account;
 import com.cryo.entities.Strip;
 import com.cryo.entities.annotations.Endpoint;
 import com.cryo.entities.annotations.EndpointSubscriber;
+import lombok.Data;
 import spark.Request;
 import spark.Response;
 
 import java.util.List;
 import java.util.Properties;
 
+import static com.cryo.ConnectionManager.getGson;
 import static com.cryo.RoomController.getConnection;
-import static com.cryo.RoomController.getGson;
 import static com.cryo.api.APIController.error;
 
 @EndpointSubscriber
+@Data
 public class StripAPI {
 
 	@Endpoint(method = "POST", endpoint = "/api/strips")
