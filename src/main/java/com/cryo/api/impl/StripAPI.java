@@ -28,6 +28,4 @@ public class StripAPI {
 		prop.put("strips", strips);
 		return getGson().toJson(prop);
 	}
-
-	public record Test(String test) { }
 }
