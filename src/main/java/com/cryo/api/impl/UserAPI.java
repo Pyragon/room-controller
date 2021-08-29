@@ -10,12 +10,17 @@ import spark.Request;
 import spark.Response;
 
 import java.util.Properties;
+import java.util.Random;
 
 import static com.cryo.api.APIController.error;
 
 @Slf4j
 @EndpointSubscriber
 public class UserAPI {
+
+	private static final Random RANDOM = new Random();
+
+	private static final String[] MESSAGES = { "Welcome back, %name%.", "How're ya now?", "Good, n'you, %name%?", "Get lit, %name%" };
 
 	@Endpoint(method="POST", endpoint="/user")
 	public static String getUserInfo(Request request, Response response) {
@@ -24,6 +29,7 @@ public class UserAPI {
 		Properties prop = new Properties();
 		prop.put("displayName", account.getDisplayName());
 		prop.put("imageName", account.getImageName());
+		prop.put("message", MESSAGES[RANDOM.nextInt(MESSAGES.length)]);
 		prop.put("success", true);
 		return RoomController.getGson().toJson(prop);
 	}
