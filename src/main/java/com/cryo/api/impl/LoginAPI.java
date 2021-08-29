@@ -24,7 +24,7 @@ import static com.cryo.api.APIController.success;
 @EndpointSubscriber
 public class LoginAPI {
 
-	@Endpoint(endpoint="POST", method="/review")
+	@Endpoint(endpoint="/review", method="POST")
 	public static String reviewKey(Request request, Response response) {
 		Account account = AccountUtils.getAccount(request);
 		if(account == null) return error("Invalid token");
