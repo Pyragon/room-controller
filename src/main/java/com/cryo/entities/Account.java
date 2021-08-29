@@ -15,6 +15,7 @@ public class Account extends MySQLDao {
 	private final String displayName;
 	private final String salt;
 	private final String hash;
+	private final String imageName;
 	@MySQLDefault
 	private final Timestamp added;
 	@MySQLDefault
