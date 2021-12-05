@@ -8,7 +8,7 @@ import java.util.Properties;
 
 public class ChristmasEffect extends Effect {
 
-	private static final int WALK_DELAY = 500;
+	private static final int WALK_DELAY = 50;
 	private static final int WALK_COUNT = 10;
 
 	private static final int PIXEL_OFFSET = 0;
